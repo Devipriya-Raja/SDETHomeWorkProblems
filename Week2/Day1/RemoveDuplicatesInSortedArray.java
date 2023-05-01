@@ -28,7 +28,7 @@ Explanation: Your function should return k = 2, with the first two elements of n
 It does not matter what you leave beyond the returned k (hence they are underscores).
 
 Time Complexity =  O(n) 
-Space Complexity = O(n)
+Space Complexity = O(1)
 */
 
 package week2Day1Assignments;
