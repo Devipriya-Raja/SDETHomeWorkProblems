@@ -1,0 +1,49 @@
+/* https://leetcode.com/problems/power-of-two/
+ * 
+ * Given an integer n, return true if it is a power of two. Otherwise, return false.
+
+An integer n is a power of two, if there exists an integer x such that n == 2x.
+
+Example 1:
+
+Input: n = 1
+Output: true
+Explanation: 20 = 1
+
+Time Complexity =  O(log n) 
+Space Complexity = O(1)
+ */
+
+package week1Day3Assignments;
+ 
+import org.testng.annotations.Test;
+
+public class PowerOf2LeetCodeProblem {
+	
+	 public static boolean isPowerOf2(int n){
+		    //if n is odd or n is zero return false
+		    if ((n % 2 != 0) || (n==0))
+		    return false;
+		   //Run till n is equal to 1
+			while (n != 1)
+			  {
+				//if n is odd return false
+			    if (n % 2 != 0)
+			      return false;
+			    //Divide n/2
+			    n = n / 2;
+			  }
+			 //if n is equal to 1 return true
+			  return true;
+			  }
+	 
+	 @Test
+		  public  void PowerOf2 () {
+		    System.out.println(isPowerOf2(8));
+		    System.out.println(isPowerOf2(875));
+		    System.out.println(isPowerOf2(256));
+		    System.out.println(isPowerOf2(832000));
+		     System.out.println(isPowerOf2(0));
+		  }
+
+}
