@@ -1,0 +1,175 @@
+/* Implement below methods using array
+	a. add to the specific index 
+	Time Complexity = O(n)
+	Space Complexity = O(1)
+	b. print the array value as string
+	Time Complexity = O(n)
+	Space Complexity = O(n)
+	c. contains
+	Time Complexity = O(n)
+	Space Complexity = O(1)
+	d. remove a value
+	Time Complexity = O(n)
+	Space Complexity = O(n)
+	e. trim to the given length
+    Time Complexity = O(n)
+	Space Complexity = O(m) m=size of trimmed array*/
+
+package week1Day1Assignments;
+
+import org.testng.annotations.Test;
+
+public class ArrayMethods {
+	public void replaceAValueToArray(int[] arr,int index,int valueToAdd) {
+
+
+	// Shift the elements to the right to create space for the new element
+	for (int i = arr.length - 1; i > index; i--) {
+	  arr[i] = arr[i - 1];
+	}
+
+	// Insert the new element at the given index
+	arr[index] = valueToAdd;
+	
+	//Print the array
+	printArrayAsString(arr);
+}
+	public void printArrayAsString(int[] arr) {
+		// Create a string 
+		String arrayAsString = "[";
+
+		// Loop through the array and append each element to the string
+		for (int i = 0; i < arr.length; i++) {
+		  // Append the current element to the string
+			arrayAsString += arr[i];
+		  
+		  // Add a comma and space before the last element
+		  if (i < arr.length - 1) {
+			  arrayAsString += ", ";
+		  }
+		}
+
+		// Add the close bracket to the string
+		arrayAsString += "]";
+
+		// Print the array as a string
+		System.out.println(arrayAsString);
+	}
+	public void containsInArray(int[] arr,int valueToSearch) {
+    int i;boolean found=false;
+	// Loop through the array and check each element
+	for (i = 0; i < arr.length; i++) {
+	  if (arr[i] == valueToSearch) {
+	    // If the value is present in the array, break the loop
+		  found=true;
+		  break;
+	  }
+	  }
+	    if(found==true)
+		 System.out.println("Value found at index " + i);
+	    else
+	      // If the loop finishes without finding the value, it is not present
+		  System.out.println("Value not found in array");
+		}
+	
+	public void containsInArray(int[] arr,int value1ToSearch,int value2ToSearch) {
+	    boolean found1=false,found2=false;
+		// Loop through the array and check each element
+		for (int i = 0; i < arr.length; i++) {
+		  if (arr[i] == value1ToSearch) 
+		    // If the value1 is present in the array, break the loop
+			  found1=true;
+		  else if (arr[i] == value2ToSearch)
+				    // If the value2 is present in the array, break the loop
+			 found2=true;
+		  }
+		     System.out.println(""); 
+		     //if(found1 && found2)
+				 //System.out.println("Both Values found at index ");
+		     if(found1)
+		      // If the value of found1 is true, value1 is present
+			  System.out.print("Value "+value1ToSearch+" found in array  ");
+			  if(found2)
+		      // If the value of found2 is true, value2 is present
+			  System.out.print("Value "+value2ToSearch+" found in array  ");
+			   if(found1 == false)
+		      // If the value of found1 is false, value1 is not present
+			  System.out.print("Value "+value1ToSearch+" not found in array  ");
+			   if(found2 == false)
+		      //If the value of found2 is false, value2 is not present
+			  System.out.print("Value "+value2ToSearch+" not found in array  ");
+		}
+	
+	public void removeElementInArray(int[] arr,int valueToRemove) {
+		// If the array is empty
+        // or the index is not in array range
+        // return or print the original array
+        if (arr == null || valueToRemove < 0 ) {
+        	System.out.println("Invalid Action: ");
+        	printArrayAsString(arr);
+        }
+     // Create another array of size one less than original array
+        int[] newArray = new int[arr.length - 1];
+	    for (int i = 0,j=0; i < arr.length; i++) {
+        //skip the element if it is present in the array 
+	      if (arr[i] == valueToRemove) 
+	         continue;
+ 
+        // if the number is not the value to be removed ,add it in new array
+        newArray[j++] = arr[i];
+    }
+	  printArrayAsString(newArray);
+	}
+	
+	
+	public void trimArray(int[] arr,int givenLength) {
+	
+	// Create a new array with the given length
+	int[] trimArray = new int[givenLength];
+    if(givenLength>=0) {
+	// Copy till the elements of given length from the original array to the new array
+	for (int i = 0; i < givenLength; i++) 
+	  trimArray[i] = arr[i];
+    }
+    else
+    	System.out.println("Please correct the desired length");
+    	
+	// Print the trimmed array
+	printArrayAsString(trimArray);	
+	}
+	
+	@Test
+	public void arrayMedhods() {
+		// Initialize the array
+		int[] arr = { 1, 2, 3, 4, 5 };
+		// Define the index and value to add
+		int index = 2;
+		int valueToAdd = 10;
+		// Define the value to search for in the array
+		int valueToSearch = 3;
+		int valueToSearch1 = 6;
+		int valueToSearch2 = 7;
+		int valueToSearch3 = 10;
+		int valueToSearch4 = 1;
+		int valueToRemove = 3;
+		int givenLength = 2;
+		int givenLength1 = 4;
+		int givenLength2 = 0;
+		replaceAValueToArray(arr,index,valueToAdd);
+		printArrayAsString(arr);
+		containsInArray(arr,valueToSearch);
+		containsInArray(arr,valueToSearch1);
+		containsInArray(arr,valueToSearch,valueToSearch1);
+		containsInArray(arr,valueToSearch1,valueToSearch2);
+		containsInArray(arr,valueToSearch3,valueToSearch4);
+		removeElementInArray(arr,valueToRemove);
+		trimArray(arr,givenLength);
+		trimArray(arr,givenLength1);
+		trimArray(arr,givenLength2);
+
+		
+	}
+
+}
+
+
