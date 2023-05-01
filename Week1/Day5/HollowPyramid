@@ -1,0 +1,81 @@
+/*
+ * Diamond Pattern in Java
+Enter a Character between A to Z : F
+
+     A
+    B B
+   C   C
+  D     D
+ E       E
+F         F
+ E       E
+  D     D
+   C   C
+    B B
+     A
+Time Complexity =  O(n^2) 
+Space Complexity = O(1)
+*/
+ package week1Day5Assignments;
+
+import org.testng.annotations.Test;
+
+public class HollowPyramid {
+	public void printHollowPyramid(int n) {
+		
+		char letter = 'A';
+		// Loop through each row of the pyramid	     
+	    for (int i = 1; i <= n && letter <= 'G'; i++, letter++){
+	    	// Loop through each column of the pyramid to begin     		    
+		  for (int j = 1; j <= n; j++) {
+		      if (j == n - i + 1)
+		    	  //Print letter
+		        System.out.print (letter);
+		      else
+		    	  //print space
+		        System.out.print (" ");
+		  }
+		// Loop through each column of the pyramid to end
+		  for (int j = 2; j <= n; j++){
+		      if (j == i)
+		    	//Print letter
+		        System.out.print (letter);
+		      else
+		    	//print space
+		        System.out.print (" ");
+		  }
+		  System.out.println ("");
+	    }
+	    letter = 'F';
+	 // Loop through each row of the pyramid
+	    for (int i = n - 1; i >= 1 && letter >= 'A'; i--, letter--){
+	    	// Loop through each column of the pyramid to begin
+	      for (int j = 1; j <= n; j++) {
+		      if (j == n - i + 1)
+		    	  //Print letter
+		        System.out.print (letter);
+		      else
+		        System.out.print (" ");
+		  }
+	   // Loop through each column of the pyramid to end
+		  for (int j = 2; j <= n; j++){
+		      if (j == i)
+		    	  //Print letter
+		        System.out.print (letter);
+		      else
+		    	//print space
+		        System.out.print (" ");
+		  }
+		  System.out.println ("");
+	   }
+	}
+		
+		@Test
+		public void printHollowPyramid() {
+			printHollowPyramid(7);
+			//printHollowPyramid(8);
+			//printHollowPyramid(10);
+
+			
+		}
+}
