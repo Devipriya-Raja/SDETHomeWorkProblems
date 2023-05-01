@@ -73,8 +73,8 @@ public class RemoveDuplicatesInSortedArray {
 	}
 	@Test
 	public void removeDuplicatesInSortedArray() {
-		//Input: nums = [0,1,0,3,12]
-				//Output: [1,3,12,0,0]
+		//Input: nums = [1,1,2]
+				//Output: [1,2,1]
 		int[] nums = {1,1,2};
 		int[] nums1 = {0,0,1,1,1,2,2,3,3,4};
 		int[] nums2 = {1,2,3};
