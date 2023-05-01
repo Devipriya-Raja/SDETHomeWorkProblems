@@ -1,0 +1,36 @@
+/*https://leetcode.com/problems/missing-number/description/
+
+Given an array nums containing n distinct numbers in the range [0, n], return the only number in the range that is missing from the array.
+
+Example 1:
+
+Input: nums = [3,0,1]
+Output: 2
+Explanation: n = 3 since there are 3 numbers, so all numbers are in the range [0,3]. 2 is the missing number in the range since it does not appear in nums.
+Time Complexity =  O(n) 
+Space Complexity = O(1)
+*/
+package week1Day4Assignments;
+
+import org.testng.annotations.Test;
+
+public class MissingNumber {
+	    public static int getMissingNo(int[] nums, int n){
+	    	//Find the summation of natural numbers
+	        int sum = (n*(n+1)) / 2;
+	        // Loop through each element until n-1
+	        for (int i = 0; i < n; i++)
+	        	// Minus each element from the sum to get the missing number
+	            sum -= nums[i];
+	        //return the missing number
+	        return sum;
+	    }
+	    
+	    @Test
+	    public static void printMissingNo(){
+	        int[] arr = {0,1,2,5,3,4,7};
+	        int length = arr.length;
+	        System.out.println(getMissingNo(arr, length));
+	    }
+	}
+
