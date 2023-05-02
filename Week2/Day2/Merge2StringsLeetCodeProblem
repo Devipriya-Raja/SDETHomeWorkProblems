@@ -1,0 +1,92 @@
+/*Merge Strings Alternately
+Easy
+1.9K
+34
+Companies
+You are given two strings word1 and word2. Merge the strings by adding letters in alternating order, starting with word1. If a string is longer than the other, append the additional letters onto the end of the merged string.
+
+Return the merged string.
+
+ 
+
+Example 1:
+
+Input: word1 = "abc", word2 = "pqr"
+Output: "apbqcr"
+Explanation: The merged string will be merged as so:
+word1:  a   b   c
+word2:    p   q   r
+merged: a p b q c r
+
+*
+*Time Complexity =  O(2n) 
+Space Complexity = O(1)
+*
+*
+*/
+
+package week2Day2Assignments;
+
+import org.testng.annotations.Test;
+
+public class Merge2StringsLeetCodeProblem {
+	public void mergeStrings(String a,String b) {
+		//String is null or 0 ,return
+		if(a == null || a.length() == 0 && b == null || b.length() == 0) {
+	        return;
+	    }
+		//Declare a new string 
+	   String newString = "";
+	   //if the length of b is greater than a 
+	   if(a.length()<b.length()) {
+	   //add one char in one string and other char for another string 
+	   for(int i = 0; i < a.length(); i++) {
+	    	newString+=a.charAt(i);
+	    	newString+=b.charAt(i);
+	    	}
+	   //After adding till a length , add remaining chars from b string 
+	    int diff=b.length()-a.length();
+	    	for(int j = b.length()-diff; j < b.length(); j++) {
+		    	newString+=b.charAt(j);
+		    	}
+	    }
+	 //if the length of a is greater than b 
+	   if(b.length()<a.length()) {
+		 //add one char in one string and other char for another string 
+		   for(int i = 0; i < b.length(); i++) {
+		    	newString+=a.charAt(i);
+		    	newString+=b.charAt(i);
+		    	}
+		   //After adding till b length , add remaining chars from a string 
+		    int diff=a.length()-b.length();
+		    	for(int j = a.length()-diff; j < a.length(); j++) {
+			    	newString+=a.charAt(j);
+			    	}
+		    }
+	   
+	 //if the length of a is greater than b 
+	   if(a.length()==b.length()) {
+		 //add one char in one string and other char for another string 
+		   for(int i = 0; i < a.length(); i++) {
+		    	newString+=a.charAt(i);
+		    	newString+=b.charAt(i);
+		    	}
+	   }
+	    
+	    System.out.println(newString);
+
+}
+	
+	@Test
+	public void mergeStrings() {
+		String a="abc";
+		String b="pqrst";
+		String a1="abcdefgh";
+		String b1="pqr";
+		String a2="";
+		String b2=null;
+		mergeStrings(a,b);
+		mergeStrings(a1,b1);
+		mergeStrings(a2,b2);
+	}
+}
