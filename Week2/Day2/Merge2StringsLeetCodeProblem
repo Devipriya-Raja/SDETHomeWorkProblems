@@ -20,7 +20,7 @@ merged: a p b q c r
 
 *
 *Time Complexity =  O(2n) 
-Space Complexity = O(1)
+Space Complexity = O(n)
 *
 *
 */
