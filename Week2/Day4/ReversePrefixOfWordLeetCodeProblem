@@ -1,0 +1,55 @@
+/*Given a 0-indexed string word and a character ch, reverse the segment of word that starts at index 0 and ends at the index of the first occurrence of ch (inclusive). If the character ch does not exist in word, do nothing.
+
+For example, if word = "abcdefd" and ch = "d", then you should reverse the segment that starts at 0 and ends at 3 (inclusive). The resulting string will be "dcbaefd".
+Return the resulting string.
+
+ 
+
+Example 1:
+
+Input: word = "abcdefd", ch = "d"
+Output: "dcbaefd"
+Explanation: The first occurrence of "d" is at index 3. 
+Reverse the part of word from 0 to 3 (inclusive), the resulting string is "dcbaefd".
+
+Time Complexity =  O(n) 
+Space Complexity = O(n)
+*/
+package week2Day4Assignments;
+
+import org.testng.annotations.Test;
+
+public class ReversePrefixOfWordLeetCodeProblem {
+	
+	public static void reversePrefix(String s,char ch) {
+		int index =0;
+		String reverseString="";
+		for(int i=0;i<s.length();i++) {
+			if(s.charAt(i)==ch) {
+				index=i;
+				break;	
+		}	
+		}
+		for(int j=index;j>=0;j--) {
+			reverseString+=s.charAt(j);	
+		}
+		for(int i=index+1;i<s.length();i++) {
+			reverseString+=s.charAt(i);	
+		}
+		System.out.println(reverseString);
+		//return reverseString;
+	}
+	
+	@Test
+	public static void reversePrefix() {
+		String s = "abcdefd";
+		String s1 = "Lovely";
+		String s2 = "goodday";
+		char ch='d';
+		char ch1='e';
+		char ch2='o';
+		reversePrefix(s,ch);
+		reversePrefix(s1,ch1);
+		reversePrefix(s2,ch2);
+}
+}
