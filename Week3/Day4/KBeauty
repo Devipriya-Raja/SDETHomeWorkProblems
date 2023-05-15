@@ -1,0 +1,81 @@
+/*2269. Find the K-Beauty of a Number
+Easy
+486
+26
+Companies
+The k-beauty of an integer num is defined as the number of substrings of num when it is read as a string that meet the following conditions:
+
+It has a length of k.
+It is a divisor of num.
+Given integers num and k, return the k-beauty of num.
+
+Note:
+
+Leading zeros are allowed.
+0 is not a divisor of any value.
+A substring is a contiguous sequence of characters in a string.
+
+ 
+
+Example 1:
+
+Input: num = 240, k = 2
+Output: 2
+Explanation: The following are the substrings of num of length k:
+- "24" from "240": 24 is a divisor of 240.
+- "40" from "240": 40 is a divisor of 240.
+Therefore, the k-beauty is 2.
+Example 2:
+
+Input: num = 430043, k = 2
+Output: 2
+Explanation: The following are the substrings of num of length k:
+- "43" from "430043": 43 is a divisor of 430043.
+- "30" from "430043": 30 is not a divisor of 430043.
+- "00" from "430043": 0 is not a divisor of 430043.
+- "04" from "430043": 4 is not a divisor of 430043.
+- "43" from "430043": 43 is a divisor of 430043.
+Therefore, the k-beauty is 2.
+Time Complexity = O(n+k)
+Space Complexity =O(1)
+
+*/
+package week3Day4Assignments;
+
+import org.testng.annotations.Test;
+
+public class KBeauty {
+	public static int kBeauty(int num, int k) {
+	    int count = 0;
+	    int divisor = 1;
+	    for (int i = 0; i < k - 1; i++) {
+	    	// compute the divisor using repeated multiplication
+	        divisor *= 10; 
+	       // System.out.println(divisor);
+	    }
+	    while (num > 0) {
+	    	//get the last digit
+	    	int previousMod= num % divisor;
+	    	// remove the last digit
+	    	num /= 10; 
+	    	//get the next digit
+	    	int mod=num % divisor;
+	    	// extract the k-digit substring
+	        int substr =previousMod+ mod* divisor;; 
+	        //System.out.println(substr);
+	      //if the substr is a divisor then increment the count
+	        if (substr != 0 && num % substr == 0) {
+	            count++;
+	            //System.out.println(count);
+	        }
+	       // System.out.println(num);
+	    }
+	    return count;
+	}
+	@Test
+	public void kBeauty() {
+	    System.out.println(kBeauty(240, 2));  // Output: 2
+	    System.out.println(kBeauty(430043, 2));  // Output: 2
+}
+	
+}
