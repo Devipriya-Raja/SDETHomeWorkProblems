@@ -1,0 +1,78 @@
+/*2379. Minimum Recolors to Get K Consecutive Black Blocks
+Easy
+529
+15
+Companies
+You are given a 0-indexed string blocks of length n, where blocks[i] is either 'W' or 'B', representing the color of the ith block. The characters 'W' and 'B' denote the colors white and black, respectively.
+
+You are also given an integer k, which is the desired number of consecutive black blocks.
+
+In one operation, you can recolor a white block such that it becomes a black block.
+
+Return the minimum number of operations needed such that there is at least one occurrence of k consecutive black blocks.
+
+ 
+
+Example 1:
+
+Input: blocks = "WBBWWBBWBW", k = 7
+Output: 3
+Explanation:
+One way to achieve 7 consecutive black blocks is to recolor the 0th, 3rd, and 4th blocks
+so that blocks = "BBBBBBBWBW". 
+It can be shown that there is no way to achieve 7 consecutive black blocks in less than 3 operations.
+Therefore, we return 3.
+Example 2:
+
+Input: blocks = "WBWBBBW", k = 2
+Output: 0
+Explanation:
+No changes need to be made, since 2 consecutive black blocks already exist.
+Therefore, we return 0.
+
+Time Complexity O(n*k)
+Space Complexity O(1)
+
+*/
+package week3Day2Assignments;
+
+import org.testng.annotations.Test;
+
+public class MinimumOperationsForBlackColor {
+	    public int minimumRecolors(String blocks, int k) {
+	    	//Initialize the count
+	        int count = 0;
+	        //Get the count of W in first k char
+	        for (int i = 0; i < k; i++) {
+	            if (blocks.charAt(i) == 'W') {
+	                count++;
+	            }
+	        }
+	      //Initialize the variable for min operations
+	        int whiteInBlackCountMinOperations = count;
+	        int n = blocks.length();
+	        //Loop from k to n 
+	        for (int i = k; i < n; i++) {
+	        	//if kth element is W , increment the count
+	            if (blocks.charAt(i) == 'W') {
+	                count++;
+	            }
+	          //if i-k th element is W , decrement the count
+	            if (blocks.charAt(i - k) == 'W') {
+	                count--;
+	            }
+	            //Compare the previous count and present count , store whichever is min
+	            if(whiteInBlackCountMinOperations>count)
+	            	whiteInBlackCountMinOperations=count;
+	        }
+	        // return min
+	        return whiteInBlackCountMinOperations;
+	    }
+@Test
+public void printRemovedArray() {
+	String input = "WBBWWBBWBW";
+	System.out.println(minimumRecolors(input,7));
+	String input1 = "WBWBBBW";
+	System.out.println(minimumRecolors(input1,2));
+}
+}
