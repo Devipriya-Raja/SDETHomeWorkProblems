@@ -1,0 +1,68 @@
+/*643. Maximum Average Subarray I
+Easy
+2.4K
+191
+Companies
+You are given an integer array nums consisting of n elements, and an integer k.
+
+Find a contiguous subarray whose length is equal to k that has the maximum average value and return this value. Any answer with a calculation error less than 10-5 will be accepted.
+
+ 
+
+Example 1:
+
+Input: nums = [1,12,-5,-6,50,3], k = 4
+Output: 12.75000
+Explanation: Maximum average is (12 - 5 - 6 + 50) / 4 = 51 / 4 = 12.75
+Example 2:
+
+Input: nums = [5], k = 1
+Output: 5.00000
+
+Time Complexity =O(n)
+Space Complexity = O(n)
+
+*/
+package week3Day1Assignments;
+
+import java.util.HashMap;
+
+import org.testng.annotations.Test;
+
+public class MaxAverage {
+	public void maxAverage(int n[],int k) {
+		//Initialize the variables
+		int i,l=n.length-k,sum=0;
+		float maxAverage=0,average=0;
+		//Create Hashmap for storing the average and its index
+		HashMap<Float,Integer> map=new HashMap<>();
+		//Find the average for first 4 element and store as Max average
+	    for(i=0;i<k;i++) {
+			sum+=n[i];
+	        maxAverage=sum/(float)k;
+	    }	
+	    //store the average and its index
+	    map.put(maxAverage,i);
+	    //Loop the array from 1th element till k 
+		for(int j=1;j<=l;j++) {
+			//remove the previous element and add the next element and find the sum 
+			sum=sum+n[j+k-1]-n[j-1];
+			//Find average and store in map
+			average=sum/(float)k;
+			map.put(average,j);
+			//compare which is greater and make it as MaxAverage
+			if(maxAverage<average)
+				maxAverage=average;
+			System.out.println(map);
+		}
+		//Print the subarray of Max Average and the maxAverage
+		for(int m =map.get(maxAverage);m<map.get(maxAverage)+k;m++)
+				System.out.println(n[m]);
+		System.out.println(maxAverage);
+	}			
+	@Test
+	public void printRemovedArray() {
+		int[] input = {1,12,-5,-6,50,3,0};
+		maxAverage(input,4);
+	}
+	}
