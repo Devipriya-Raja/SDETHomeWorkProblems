@@ -1,0 +1,79 @@
+/*1598. Crawler Log Folder
+Easy
+791
+58
+Companies
+The Leetcode file system keeps a log each time some user performs a change folder operation.
+
+The operations are described below:
+
+"../" : Move to the parent folder of the current folder. (If you are already in the main folder, remain in the same folder).
+"./" : Remain in the same folder.
+"x/" : Move to the child folder named x (This folder is guaranteed to always exist).
+You are given a list of strings logs where logs[i] is the operation performed by the user at the ith step.
+
+The file system starts in the main folder, then the operations in logs are performed.
+
+Return the minimum number of operations needed to go back to the main folder after the change folder operations.
+
+ 
+
+Example 1:
+
+
+
+Input: logs = ["d1/","d2/","../","d21/","./"]
+Output: 2
+Explanation: Use this change folder operation "../" 2 times and go back to the main folder.
+Example 2:
+
+
+
+Input: logs = ["d1/","d2/","./","d3/","../","d31/"]
+Output: 3
+Example 3:
+
+Input: logs = ["d1/","../","../","../"]
+Output: 0
+
+
+Time Complexity =  O(n)
+Space Complexity = O(1)
+
+
+*/
+
+package week4Day5Assignments;
+
+import org.testng.annotations.Test;
+
+public class Crawl {
+	public int minOperations(String[] logs) {
+		//Initialize a variable count
+	    int count = 0;
+	    //Iterate over each log in the given list of logs
+	    for (String log : logs) {
+	    //If log is equal to "../"
+	    if (log.equals("../")) {
+	    //And if count is greater than 0
+	    if (count > 0) 
+	       //Decrement the count  
+	        count--;
+	     //Else if log is not equal to "./"    
+	    } else if (!log.equals("./")) {
+	    	//Increment the count
+	        count++;
+	    }
+	    }
+	    return count;
+	}
+	@Test
+	public void minOperationsTest() {
+		String[] s = {"d1/","d2/","../","d21/","./"};
+		System.out.println(minOperations(s));//Output 2
+		String[] s1 = {"d1/","d2/","./","d3/","../","d31/"};
+		System.out.println(minOperations(s1));//Output 3
+		String[] s2 = {"d1/","../","../","../"};
+		System.out.println(minOperations(s2));//Output 0
+	}
+}
